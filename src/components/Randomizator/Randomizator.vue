@@ -1,6 +1,6 @@
 <template>
 
-  <div class="randomizator">
+	<div class="randomizator">
 		<div class="randomizator-text">{{beerCard.text}}</div>
 		<div class="beer-card">
 			<div class="beer-card__item beer-card__brand">{{beerCard.brand}}</div>
@@ -8,15 +8,24 @@
 			<div class="beer-card__item beer-card__style">{{beerCard.style}}</div>
 			<div class="beer-card__item beer-card__alcohol">{{beerCard.alcohol}}</div>
 		</div>
-		<button @click="fetchBeerData" class='randomizator__btn'>{{beerCard.btn}}</button>
+
+		<CustumButton 
+		@click="fetchBeerData" 
+		class='randomizator__btn'>
+		{{beerCard.btn}}
+		</CustumButton>
 	</div>
 
 </template>
 
 <script>
 import axios from 'axios'
+import CustumButton from '@/components/UI/CustumButton.vue'
 
 export default {
+	components: {
+		CustumButton
+	},
 	data(){
 		return{
 			beerCard:{
@@ -60,33 +69,27 @@ export default {
 	justify-content: center;
 	row-gap: 20px;
 	flex: 1 1 50%;
+	width: 300px;
 		
 }
 .randomizator-text{
 	color: #35495E;
 	font-size: 30px;
-
 }
 
 .randomizator__btn{
 	margin-top: 10px;
-	padding: 10px 30px;
-	border-radius: 45px;
-	color: #ffffff;
-	text-align: right;
-	font-size: 20px;
-	background: #35495E;
-	transition: 0.2s all;
-}
-
-.randomizator__btn:hover{
-	color: #ffffff;
-	background: #42B983;
 }
 
 .beer-card__item{
 	font-size: 20px;
 	margin-top: 10px;
+}
+
+@media(max-width: 390px) {
+	.randomizator{
+		width: auto;
+	}
 }
 
 </style>

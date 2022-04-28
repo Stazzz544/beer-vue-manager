@@ -175,13 +175,12 @@ h6 {
 		flex-direction: column;
 		align-items: center;
 	}
-}
-
-@media(max-width: 400px) {
 	.main{
 		padding: 0;
 	}
 }
+
+
 
 </style>
 
