@@ -124,7 +124,7 @@ h6 {
 
 /*------reset styles end-------*/
 
-/* main */
+
 .main{
 	flex: 1 1;
 	display: flex;
@@ -132,7 +132,6 @@ h6 {
 	padding: 0 20px;
 }
 
-/* user section */
 .App{
 	min-height: 100vh;
 	background: #42B983;
@@ -155,7 +154,6 @@ h6 {
 	padding: 30px 40px;
 }
 
-/* =======all medias======== */
 @media(max-width: 645px) {
 	.profile{
 		flex-direction: column;
