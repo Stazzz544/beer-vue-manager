@@ -30,13 +30,13 @@
 
 				<div class="randomizator">
 					<div class="randomizator-text">{{beerCard.text}}</div>
-					<div class="beerCard">
-						<div class="beerCard__brand"></div>
-						<div class="beerCard__name"></div>
-						<div class="beerCard__style"></div>
-						<div class="beerCard__alcohol"></div>
+					<div class="beer-card">
+						<div class="beer-card__item beer-card__brand">{{beerCard.brand}}</div>
+						<div class="beer-card__item beer-card__name">{{beerCard.name}}</div>
+						<div class="beer-card__item beer-card__style">{{beerCard.style}}</div>
+						<div class="beer-card__item beer-card__alcohol">{{beerCard.alcohol}}</div>
 					</div>
-					<button @click="getBeerData" class='randomizator__btn'>{{beerCard.btn}}</button>
+					<button @click="fetchBeerData" class='randomizator__btn'>{{beerCard.btn}}</button>
 				</div>
 			</div>	
 		</div>
@@ -94,21 +94,30 @@ export default {
 			} catch (e) {
 				alert(e)
 			}
-		}
+		},
+		async fetchBeerData(){
+			try{
+				const url = 'https://random-data-api.com/api/beer/random_beer';
+				const response = await axios.get(url)
+				const beerData = response.data
+				
+				this.beerCard.text = 'Chosen one beer:',
+				this.beerCard.btn = 'one more beer!',
+				this.beerCard.brand = 'Brand: ' + beerData.brand,
+				this.beerCard.name = 'Name: ' + beerData.name,
+				this.beerCard.style = 'Style: ' + beerData.style,
+				this.beerCard.alcohol = 'Alc: ' + beerData.alcohol
+				
+			} catch(e) {
+				alert(e)
+			}
+		},
 	},
-	async getBeerData(){
-		try{
-			const url = 'https://random-data-api.com/api/beer/random_beer';
-			const response = await axios.get(url)
-			const beerData = response.data
-
-		} catch(e) {
-			alert(e)
-		}
-	},
+	
 	beforeMount(){
 		this.fetchUser()
 	},
+	
 }
 </script>
 
@@ -261,10 +270,12 @@ h6 {
 	align-items: center;
 	justify-content: space-around;
 	flex: 1 1 50%;
+		
 }
 .randomizator-text{
 	color: #35495E;
 	font-size: 30px;
+
 }
 
 .randomizator__btn{
@@ -291,15 +302,14 @@ h6 {
 	height: 200px;
 	border-radius: 50%;
 	border: solid 3px #42B983;
-
 }
+
 .user__photo-wrapper-inside {
 	border-radius: 50%;
 	border: solid 6px rgb(215, 215, 255);
 	width: 195px;
 	height: 195px;
 	overflow: hidden;
-	
 }
 
 .user__photo-img {
@@ -318,6 +328,15 @@ h6 {
 	color: #35495E;
 	font-size: 18px;
 	font-weight: 700;
+}
+
+/* beerCard */
+.beer-card{
+}
+
+.beer-card__item{
+	font-size: 20px;
+	margin-top: 10px;
 }
 
 
