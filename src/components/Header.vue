@@ -41,7 +41,7 @@ export default {
 	}
 }
 
-	@media(max-width: 385px) {
+@media(max-width: 385px) {
 	.header__title{
 		line-height: 23px;
 	}

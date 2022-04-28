@@ -129,6 +129,7 @@ h6 {
 	flex: 1 1;
 	display: flex;
 	flex-direction: column;
+	padding: 0 20px;
 }
 
 /* user section */
@@ -174,14 +175,12 @@ h6 {
 		flex-direction: column;
 		align-items: center;
 	}
-	.profile {
-
-	}
-	
 }
 
-@media(max-width: 385px) {
-
+@media(max-width: 400px) {
+	.main{
+		padding: 0;
+	}
 }
 
 </style>

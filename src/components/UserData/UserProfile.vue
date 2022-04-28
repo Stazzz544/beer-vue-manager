@@ -1,6 +1,6 @@
 <template>
 <div class="user">
-	<UserAvatar :userData = 'userData'/>
+	<UserAvatar :userAvatar = 'userAvatar'/>
 	<UserInfo :userData = 'userData'/>
 </div>
 </template>
@@ -14,16 +14,17 @@ export default {
 	data(){
 		return{
 			userData:{
-				avatarStatus: null,
 				firstName: null,
 				lastName: null,
 				fullYears: null,
 				employment: null,
+			},
+			userAvatar:{
+				avatarStatus: null,
 				avatarUrl: null,
 				avatar: null,
 				loader: true
-			},
-			userAvatar:{}
+			}
 		}
 	},
 	components: {
@@ -35,10 +36,10 @@ export default {
 			try{
 				const url = 'https://random-data-api.com/api/users/random_user'
 				const response = await axios.get(url)
-				const userData = response.data
+				const responseUserData = response.data
 
-				if (userData.date_of_birth){
-					const arr = userData.date_of_birth.split('-')
+				if (responseUserData.date_of_birth){
+					const arr = responseUserData.date_of_birth.split('-')
 					const userBerthday = new Date(+arr[0], arr[1], +arr[2])
 					const today = (Date.now() - userBerthday)
 					this.userData.fullYears = Math.floor(today / (1000 * 60 * 60 * 24 * 30 * 12))
@@ -46,10 +47,10 @@ export default {
 					return 'no information'
 				}
 
-				this.userData.avatarUrl = userData.avatar
-				this.userData.firstName = userData.first_name
-				this.userData.lastName = userData.last_name
-				this.userData.employment = userData.employment.title
+				this.userAvatar.avatarUrl = responseUserData.avatar
+				this.userData.firstName = responseUserData.first_name
+				this.userData.lastName = responseUserData.last_name
+				this.userData.employment = responseUserData.employment.title
 				this.fetchAvatar()
 			} catch (e) {
 				alert(e)
@@ -57,10 +58,10 @@ export default {
 		},
 		async fetchAvatar() {
 			try {
-				const url = this.userData.avatarUrl;
+				const url = this.userAvatar.avatarUrl;
 				await axios.get(url)
-				this.userData.avatar = url
-				this.userData.loader = false
+				this.userAvatar.avatar = url
+				this.userAvatar.loader = false
 			} catch (e) {
 				this.fetchAvatar()
 			}

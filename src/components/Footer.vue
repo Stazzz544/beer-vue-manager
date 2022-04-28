@@ -11,7 +11,6 @@ export default {
 </script>
 
 <style scoped>
-
 .footer__copyright{
 	text-align: center;
 	font-size: 20px;

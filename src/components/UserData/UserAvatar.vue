@@ -2,7 +2,7 @@
   <div class="user__photo-wrapper-outside">
 		<div  class="user__photo-wrapper-inside">
 			<div :class=loading>loading...</div> 
-			<img :src="userData.avatar" alt="" :class=avatar>
+			<img :src="userAvatar.avatar" alt="" :class=avatar>
 		</div>
 	</div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 export default {
 	props: {
-		userData: {
+		userAvatar: {
 			type: Array,
 			required: true,
 		}
@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		loader() {
-			if (this.userData.loader) {
+			if (this.userAvatar.loader) {
 				this.loading = 'loading active '
 			} else {
 				this.loading = 'loading'; 
